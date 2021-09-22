@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>登录页</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+<div id="app">
+    <p>{{ name }}</p>
+
+    <ul id="example-2">
+        <li v-for="(item, index) in list">
+            {{ item.id}} - {{ item.cat}}
+        </li>
+    </ul>
+</div>
+</body>
+
+</html>
+<script>
+
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            name: '',
+            list: []
+        },
+        mounted() {
+            //原始的Axios请求方式
+            axios({
+                method: 'post',
+                url: '/',
+                data: {
+                    token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwicGhvbmUiOiIxNzg3NjI1OTY0NSIsImxldmVsIjoxLCJjcmVhdGVfdGltZSI6IjIwMjEtMDktMTggMTU6MjA6MTAifQ.j0V2YjOiJogJOPKpdXebThbRSLrDLH6TbXURfUjgqDg'
+                },
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(function (response) {
+                //let Lists = JSON.stringify(response.data)
+                vm.name = response.data.name
+                vm.list = response.data.list
+            }).catch(function (error) {
+                console.log(error)
+            });
+
+        }
+    })
+
+
+</script>
