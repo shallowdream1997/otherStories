@@ -23,6 +23,9 @@ class AdminToken
             throw new AdminException(2003);
         }
         $cache = Cache::get($token);
+        if (empty($cache)) {
+            throw new AdminException(2003);
+        }
         $bool = JwtToken::getPayload($token, $cache);
         if (empty($bool)) {
             throw new AdminException(2003);
