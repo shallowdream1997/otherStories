@@ -12,8 +12,8 @@ class Index extends BaseController
     
     public function index()
     {
-
-        return json();
+        $user = ['name' => 'admin','list'=>[['id'=>1,'cat'=>'12arc'],['id'=>2,'cat'=>'hera4'],['id'=>3,'cat'=>'ajj4t']]];
+        return json($user);
     }
 
     public function single()

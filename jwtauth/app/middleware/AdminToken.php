@@ -19,6 +19,9 @@ class AdminToken
     public function handle($request, \Closure $next)
     {
         $token = $request->post('token');
+        if (empty($token)) {
+            throw new AdminException(2003);
+        }
         $cache = Cache::get($token);
         $bool = JwtToken::getPayload($token, $cache);
         if (empty($bool)) {
