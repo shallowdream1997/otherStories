@@ -6,9 +6,9 @@ use app\middleware\AdminToken;
 
 class Index extends BaseController
 {
-    protected $middleware = [
-        AdminToken::class
-    ];
+//    protected $middleware = [
+//        AdminToken::class
+//    ];
     
     public function index()
     {
